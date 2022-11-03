@@ -1,0 +1,84 @@
+- Menu principal
+
+... - Menu operaciones aritmeticas
+
+... - Menu conversiones base
+
+
+FUNCIONES:
+	- Sumar
+	- Restar
+	- Multiplicar
+	- Dividir
+	- Resto
+
+	- Dec2bin
+	- Dec2hex
+	- bin2dec
+	- bin2hex
+	- hex2bin
+	- hex2dec
+
+
+REPARTO:
+	- Menus 
+	- Funciones aritmeticas
+	- 3 primeras funciones de conversiones
+	- 3 ultimas funciones de conversiones
+
+
+--> MENUS:
+
+- Tendra que hacer la estructura principal del programa
+- Cada eleccion por parte del usuario hara una llamada a las diferentes funciones
+(Ejemplo:
+	if entrada == "Sumar":
+		...
+		double a = ...
+		double b = ...
+		sumar(a, b);   )
+
+
+--> OPERACIONES ARITMETICAS:
+- Desarrollar las funciones aritmeticas. 
+- Los nombres de las funciones tendrán que concordar con las llamadas
+(Ejemplo:
+	public static int sumar(a, b){
+		return a+b;
+	}   )
+
+
+--> CONVERSIONES (2 personas):
+- Desarrollar las conversiones
+(Ejemplo:
+	public static String dec2hex(int a){
+		...
+		return String;
+	}
+- Los hexadecimales y los binarios se pasan en formato String
+
+
+
+NOTAS DE IMPORTANCIA
+
+- Cada usuario debe sincronizar el repositorio
+- Cada usuario trabajará en una rama diferente
+
+- Por cada actualizacion funcional del codigo se hará un commit
+(Ejemplo:
+	Terminas el menu principal -- Commit
+	Terminas el menu aritmetico -- Commit
+	Terminas el menu conversiones -- Commit
+
+o
+
+	Terminas 3 operaciones aritmeticas -- Commit
+	Terminas las otras 2 -- Commit
+	Corriges un error -- Commit   )
+
+- Cada sesion debe terminar con un push en la rama en la que trabajeis
+- Al final se hará un merge organizado con todas las ramas
+- La correcion de posteriores errores se hara en la rama main
+- Recordar hacer un pull antes de las sesiones de trabajo que hagais
+- Se ha creado un Kanban en Trello para seguir el flujo de trabajo:
+	Trello: https://trello.com/invite/b/PldbMsR1/ATTI8e5fb8dd528eb257b6f9c8ad72cf1fd4B9F58A81/proyecto-programacion
