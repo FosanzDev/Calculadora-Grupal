@@ -19,9 +19,23 @@ public class LibIO {
         return resultado;
     }
 
-    public static int leerInt(String mensaje, int min, int max) {
-        // TODO 
-        return -1;
+    public static int leerInt(String mensaje, int min, int max){
+        boolean valido;
+        do{
+            System.out.print(mensaje);
+            int num = scanner.nextInt();
+            if (inRange(num, min, max)){
+                valido = true;
+                return num;
+            }
+
+            else{
+                System.out.println("Entrada no valida");
+                valido = false;
+            }
+        } while (!valido);
+
+        return 0;
     }
 
     /**
@@ -83,6 +97,11 @@ public class LibIO {
             System.out.println("-".repeat(title.length() + 6));
             System.out.println(footer);
         }
+    }
+    
+    public static boolean inRange(double x, double lowerBound, double upperBound){
+        if (x >= lowerBound && x <=upperBound) return true;
+        else return false;
     }
 
 }
