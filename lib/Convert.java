@@ -28,4 +28,33 @@ public class Convert {
         }
         return res;
     }
+    /**
+     * In this function, it will return a {@code decimal} that before was an {@code hexadecimal} number
+     * <p>
+     * Example: 
+     * <blockquote><pre>
+     * hex2dec("3F5");
+     * //outputs 3155 because : 3 ---> 3 | F ---> 15 | 5 ---> 5
+     * //And all of this numbers go to String res, that then, will be output
+     * </blockquote></pre>
+     * @param hexNumber (The character in hexadecimal)
+     * @return res (That is the result of the decimal number)
+     */
+    public static String hex2dec(String hexNumber) {
+        String hexConstants = "ABCDEF";
+        String res = "";
+        int decNum;
+
+        for (int i = 0; i < hexNumber.length(); i ++) {
+            decNum = 0;
+            char c = hexNumber.charAt(i);
+            if (c > '9') {
+                decNum = 10 + hexConstants.indexOf(c);
+            } else {
+                decNum = c - '0';
+            }
+            res += decNum;
+        }
+        return res;
+    }
 }
