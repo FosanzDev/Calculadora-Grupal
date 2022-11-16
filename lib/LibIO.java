@@ -1,15 +1,33 @@
 package lib;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibIO {
     private static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * Request the user an String with a personalized request message
+     * and loops input request in case length of the String given is not between {@code [minLon-maxLon]}
+     * <p>
+     * Examples:
+     * <blockquote><pre>
+     * 
+     * String string = leerString("Enter an String: ", 0, 20);
+     * 
+     * </pre></blockquote>
+     * <p>
+     * 
+     * @param mensaje String with the personalized message
+     * @param minLon Integer with the minimum length
+     * @param maxLon Integer with the maximum length
+     * @return String with the validated input
+     */
     public static String leerString(String mensaje, int minLon, int maxLon) {
         String resultado = "";
         boolean valido;
         do {
-            System.out.println(mensaje);
+            System.out.print(mensaje);
             resultado = scanner.nextLine();
             valido = resultado.length() >= minLon && resultado.length() <= maxLon;
             if (!valido) {
@@ -19,9 +37,111 @@ public class LibIO {
         return resultado;
     }
 
-    public static int leerInt(String mensaje, int min, int max) {
-        // TODO 
-        return -1;
+    public static String leerString(String mensaje){
+        System.out.print(mensaje);
+        return scanner.nextLine();
+    }
+
+    /**
+     * Requests the user an integer with personalized message and
+     * loops input request in case number it's not in range {@code [min-max]}
+     * <p>
+     * Examples:
+     * 
+     * <blockquote><pre>
+     * 
+     * int validNumber = leerInt("Enter integer between 0 and 10: ", 0, 10);
+     * 
+     * </pre></blockquote>
+     * 
+     * <p>
+     * @param mensaje String with personalized input
+     * @param min Integer with min value to accept
+     * @param max Integer with max value to accept
+     * @return an integer with the validated input 
+     */
+    public static int leerInt(String mensaje, int min, int max){
+        boolean valido;
+        do{
+            System.out.print(mensaje);
+            String snum = scanner.nextLine();
+            int num = 0;
+            try {
+                num = Character.getNumericValue(snum.charAt(0));
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no valida");
+                valido = false;
+            }
+            if (inRange(num, min, max)){
+                valido = true;
+                return num;
+            }
+
+            else{
+                System.out.println("Entrada no valida");
+                valido = false;
+            }
+        } while (!valido);
+
+        return 0;
+    }
+
+    /**
+     * Requests the user an integer with personalized message
+     * <p>
+     * Examples:
+     * <blockquote><pre>
+     * int number = leerInt("Introduzca un numero: ");
+     * //number = user input as an integer
+     * </pre></blockquote>
+     * @param mensaje String with personalized input
+     * @return an integer with the user input
+     */
+    public static int leerInt(String mensaje) {
+        System.out.print(mensaje);
+        int res = scanner.nextInt();
+        scanner.nextLine();
+        return res;
+    }
+
+    /**
+     * Requests the user a binary number and checks wether it's valid or not
+     * @param mensaje String with the personalized request message
+     * @return String with the validated binary
+     */
+    public static String leerBinario(String mensaje){
+        boolean valido = true;
+        String res = "";
+
+        do {
+            System.out.print(mensaje);
+            String bin = scanner.nextLine();
+            valido = true;
+
+            for(int i=0; i<bin.length(); i++){
+                char idx = bin.charAt(i);
+                if(idx == '0' || idx == '1');
+
+                else{
+                    System.out.println("Binario no valido");
+                    valido = false;
+                    break;
+                }
+            if(valido) res = bin;
+        }
+            
+        } while (!valido);
+
+        return res;
+    }
+
+    /**
+     * Wait until user interruption (Enter key)
+     * @param mensaje String with personalized message
+     */
+    public static void waitReturn(String mensaje) {
+        System.out.println(mensaje);
+        scanner.nextLine();
     }
 
     /**
@@ -83,6 +203,24 @@ public class LibIO {
             System.out.println("-".repeat(title.length() + 6));
             System.out.println(footer);
         }
+    }
+    
+        /**
+     * Returns wether the number is between a range of numbers or not
+     * <p>
+     * Examples:
+     * <blockquote><pre>
+     * boolean b = inRange(3, 2.5, 4)
+     *      //b = true
+     * </pre></blockquote>
+     * @param x Number to be checked
+     * @param lowerBound Min range border
+     * @param upperBound Max range border
+     * @return a boolean with the result
+     */
+    public static boolean inRange(double x, double lowerBound, double upperBound){
+        if (x >= lowerBound && x <=upperBound) return true;
+        else return false;
     }
 
 }
