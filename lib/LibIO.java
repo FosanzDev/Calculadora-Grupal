@@ -1,5 +1,6 @@
 package lib;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibIO {
@@ -26,7 +27,7 @@ public class LibIO {
         String resultado = "";
         boolean valido;
         do {
-            System.out.println(mensaje);
+            System.out.print(mensaje);
             resultado = scanner.nextLine();
             valido = resultado.length() >= minLon && resultado.length() <= maxLon;
             if (!valido) {
@@ -34,6 +35,11 @@ public class LibIO {
             }
         } while (!valido);
         return resultado;
+    }
+
+    public static String leerString(String mensaje){
+        System.out.print(mensaje);
+        return scanner.nextLine();
     }
 
     /**
@@ -58,7 +64,14 @@ public class LibIO {
         boolean valido;
         do{
             System.out.print(mensaje);
-            int num = scanner.nextInt();
+            String snum = scanner.nextLine();
+            int num = 0;
+            try {
+                num = Character.getNumericValue(snum.charAt(0));
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada no valida");
+                valido = false;
+            }
             if (inRange(num, min, max)){
                 valido = true;
                 return num;
@@ -71,6 +84,64 @@ public class LibIO {
         } while (!valido);
 
         return 0;
+    }
+
+    /**
+     * Requests the user an integer with personalized message
+     * <p>
+     * Examples:
+     * <blockquote><pre>
+     * int number = leerInt("Introduzca un numero: ");
+     * //number = user input as an integer
+     * </pre></blockquote>
+     * @param mensaje String with personalized input
+     * @return an integer with the user input
+     */
+    public static int leerInt(String mensaje) {
+        System.out.print(mensaje);
+        int res = scanner.nextInt();
+        scanner.nextLine();
+        return res;
+    }
+
+    /**
+     * Requests the user a binary number and checks wether it's valid or not
+     * @param mensaje String with the personalized request message
+     * @return String with the validated binary
+     */
+    public static String leerBinario(String mensaje){
+        boolean valido = true;
+        String res = "";
+
+        do {
+            System.out.print(mensaje);
+            String bin = scanner.nextLine();
+            valido = true;
+
+            for(int i=0; i<bin.length(); i++){
+                char idx = bin.charAt(i);
+                if(idx == '0' || idx == '1');
+
+                else{
+                    System.out.println("Binario no valido");
+                    valido = false;
+                    break;
+                }
+            if(valido) res = bin;
+        }
+            
+        } while (!valido);
+
+        return res;
+    }
+
+    /**
+     * Wait until user interruption (Enter key)
+     * @param mensaje String with personalized message
+     */
+    public static void waitReturn(String mensaje) {
+        System.out.println(mensaje);
+        scanner.nextLine();
     }
 
     /**
@@ -139,10 +210,8 @@ public class LibIO {
      * <p>
      * Examples:
      * <blockquote><pre>
-     * 
      * boolean b = inRange(3, 2.5, 4)
      *      //b = true
-     * 
      * </pre></blockquote>
      * @param x Number to be checked
      * @param lowerBound Min range border
