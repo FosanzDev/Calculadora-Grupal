@@ -1,4 +1,5 @@
 import lib.LibIO;
+import lib.Convert;
 
 public class Calculadora{
 
@@ -64,19 +65,36 @@ public class Calculadora{
 
                 switch (subOption){
                     case 1:
-                        //TODO -- dec2bin call
+                        //dec2bin
+                        int dec = LibIO.leerInt("Introduzca en decimal: ");
+                        String sres = Convert.dec2bin(dec);
+                        System.out.println("En binario seria: "  + sres);
+                        LibIO.waitReturn("\nPresione Enter para continuar");
+                        System.out.println("\n\n");
                         break;
                     
                     case 2:
-                        //TODO -- dec2hex call
+                        dec = LibIO.leerInt("Introduzca en decimal: ");
+                        sres = Convert.dec2hex(dec);
+                        System.out.println("En hexadecimal seria: " + sres);
+                        LibIO.waitReturn("\nPresione Enter para continuar");
+                        System.out.println("\n\n");
                         break;
                     
                     case 3:
-                        //TODO -- bin2dec call
+                        String bin = LibIO.leerBinario("Introduzca en binario: ");
+                        int res = Convert.bin2dec(bin);
+                        System.out.println("En decimal seria: " + res);
+                        LibIO.waitReturn("\nPresione Enter para continuar");
+                        System.out.println("\n\n");
                         break;
                     
                     case 4:
-                        //TODO -- bin2hex call
+                        bin = LibIO.leerBinario("Introduzca en binario: ");
+                        sres = Convert.bin2hex(bin);
+                        System.out.println("En hexadecimal seria: " + sres);
+                        LibIO.waitReturn("Presione Enter para continuar");
+                        System.out.println("\n\n");
                         break;
                     
                     case 5:
