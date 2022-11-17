@@ -1,6 +1,4 @@
 package lib;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class LibIO {
@@ -61,24 +59,34 @@ public class LibIO {
      * @return an integer with the validated input 
      */
     public static int leerInt(String mensaje, int min, int max){
-        boolean valido;
+        boolean valido = true;
         do{
             System.out.print(mensaje);
             String snum = scanner.nextLine();
-            int num = 0;
-            try {
-                num = Character.getNumericValue(snum.charAt(0));
-            } catch (InputMismatchException e) {
-                System.out.println("Entrada no valida");
-                valido = false;
-            }
-            if (inRange(num, min, max)){
+            int n = 0;
+
+            for(int i=0; i<snum.length(); i++){
+                try {
+                    n = Integer.parseInt(snum);
+                } catch (NumberFormatException e) {
+                    System.out.println("Entrada no valida");
+                    valido = false;
+                    break;
+                }
                 valido = true;
-                return num;
+            }
+
+            if (!valido)
+                continue;
+                
+
+            if (inRange(n, min, max)){
+                valido = true;
+                return n;
             }
 
             else{
-                System.out.println("Entrada no valida");
+                System.out.println("Entrada no valida (Fuera de rango)");
                 valido = false;
             }
         } while (!valido);
@@ -97,11 +105,24 @@ public class LibIO {
      * @param mensaje String with personalized input
      * @return an integer with the user input
      */
-    public static int leerInt(String mensaje) {
-        System.out.print(mensaje);
-        int res = scanner.nextInt();
-        scanner.nextLine();
-        return res;
+    public static int leerInt(String mensaje){
+        int n = 0;
+        boolean valido = true;
+        do{
+            System.out.print(mensaje);
+            String snum = scanner.nextLine();
+
+            try {
+                n = Integer.parseInt(snum);
+                valido = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no valida");
+                valido = false;
+            }
+                
+        } while (!valido);
+
+        return n;
     }
 
     /**

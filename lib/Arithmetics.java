@@ -38,7 +38,7 @@ public class Arithmetics{
 * @return resultado de la suma de los dos números enteros introducidos previamente por el usuario.
 */
     public static int sum(int num1, int num2){
-        sin res=num1+num2;
+        int res=num1+num2;
         return res;
     }
 
@@ -80,7 +80,7 @@ public class Arithmetics{
 * @return resultado de la resta de los dos números enteros introducidos previamente por el usuario.
 */
     public static int rest(int num1, int num2){
-        sin res=num1-num2;
+        int res = num1-num2;
         return res;
     }
 
@@ -122,7 +122,7 @@ public class Arithmetics{
 * @return resultado entero de la multiplicación de los dos números enteros introducidos previamente por el usuario.
 */
     public static int mult(int num1, int num2){
-        sin res=num1*num2;
+        int res=num1*num2;
         return res;
     }
 

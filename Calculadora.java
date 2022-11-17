@@ -1,5 +1,5 @@
-import lib.LibIO;
-import lib.Convert;
+import lib.*;
+
 
 public class Calculadora{
 
@@ -39,10 +39,16 @@ public class Calculadora{
 
                 switch (subOption){
                     case 1:
-                        //TODO -- Sum call
+                        //Addition option
+                        double a = LibIO.leerInt("Introduzca primer numero: ");
+                        double b = LibIO.leerInt("Introduzca segundo numero: ");
+                        System.out.println("El resultado de la suma es: " + Arithmetics.rest(a, b));
                         break;
                     case 2:
-                        //TODO -- Subs call
+                        //Substraction option
+                        a = LibIO.leerInt("Introduzca primer numero: ");
+                        b = LibIO.leerInt("Introduzca segundo numero: ");
+                        System.out.println("El resultado de la resta es: " + Arithmetics.rest(a, b));
                         break;
                     case 3:
                         //TODO -- Mult call
