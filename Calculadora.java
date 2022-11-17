@@ -31,33 +31,47 @@ public class Calculadora{
         do {
             LibIO.deployMenu("CALCULADORA", "0. Salir del programa", ". ", mainMenu);        
 
-            int option = LibIO.leerInt("Elija una opción: ", 0, 2);
+            int option = LibIO.leerOpcion("Elija una opción: ", 0, 2);
 
             if (option == 1){
                 LibIO.deployMenu("OPERACIONES ARITMÉTICAS", "0. Salir al menu principal", ". ", arithMenu);
-                int subOption = LibIO.leerInt("Elija una opción: ", 0, 5);
+                int subOption = LibIO.leerOpcion("Elija una opción: ", 0, 5);
 
                 switch (subOption){
                     case 1:
                         //Addition option
-                        double a = LibIO.leerInt("Introduzca primer numero: ");
-                        double b = LibIO.leerInt("Introduzca segundo numero: ");
-                        System.out.println("El resultado de la suma es: " + Arithmetics.rest(a, b));
+                        double a = LibIO.leerNum("Introduzca primer numero: ");
+                        double b = LibIO.leerNum("Introduzca segundo numero: ");
+                        System.out.println("El resultado de la suma es: " + Arithmetics.sum(a, b));
+                        LibIO.pause();
                         break;
                     case 2:
                         //Substraction option
-                        a = LibIO.leerInt("Introduzca primer numero: ");
-                        b = LibIO.leerInt("Introduzca segundo numero: ");
+                        a = LibIO.leerNum("Introduzca primer numero: ");
+                        b = LibIO.leerNum("Introduzca segundo numero: ");
                         System.out.println("El resultado de la resta es: " + Arithmetics.rest(a, b));
+                        LibIO.pause();
                         break;
                     case 3:
-                        //TODO -- Mult call
+                        //Multiplication
+                        a = LibIO.leerNum("Introduzca multiplicando: ");
+                        b = LibIO.leerNum("Introduzca multiplicador: ");
+                        System.out.println("El resultado de la multiplicacion es: " + Arithmetics.mult(a, b));
+                        LibIO.pause();
                         break;
                     case 4:
-                        //TODO -- Div call
+                        //Division
+                        a = LibIO.leerNum("Introduzca dividendo: ");
+                        b = LibIO.leerNum("Introduzca divisor: ");
+                        System.out.println("El resultado de la division es: " + Arithmetics.div(a, b));
+                        LibIO.pause();
                         break;
                     case 5:
-                        //TODO -- Mod call
+                        //Remainder
+                        a = LibIO.leerNum("Introduzca dividendo: ");
+                        b = LibIO.leerNum("Introduzca divisor: ");
+                        System.out.println("El resto de la division es: " + Arithmetics.resto(a, b));
+                        LibIO.pause();
                         break;
                 
                     default: break;
@@ -67,7 +81,7 @@ public class Calculadora{
 
             else if (option == 2){
                 LibIO.deployMenu("CONVERSIONES DE BASE", "0. Volver al menú principal", ". ", convMenu);
-                int subOption = LibIO.leerInt("Elija una opción: ", 0, 6);
+                int subOption = LibIO.leerOpcion("Elija una opción: ", 0, 6);
 
                 switch (subOption){
                     case 1:
@@ -75,40 +89,47 @@ public class Calculadora{
                         int dec = LibIO.leerInt("Introduzca en decimal: ");
                         String sres = Convert.dec2bin(dec);
                         System.out.println("En binario seria: "  + sres);
-                        LibIO.waitReturn("\nPresione Enter para continuar");
-                        System.out.println("\n\n");
+                        LibIO.pause();
                         break;
                     
                     case 2:
+                        //dec2hex
                         dec = LibIO.leerInt("Introduzca en decimal: ");
                         sres = Convert.dec2hex(dec);
                         System.out.println("En hexadecimal seria: " + sres);
-                        LibIO.waitReturn("\nPresione Enter para continuar");
-                        System.out.println("\n\n");
+                        LibIO.pause();
                         break;
                     
                     case 3:
+                        //bin2dec
                         String bin = LibIO.leerBinario("Introduzca en binario: ");
                         int res = Convert.bin2dec(bin);
                         System.out.println("En decimal seria: " + res);
-                        LibIO.waitReturn("\nPresione Enter para continuar");
-                        System.out.println("\n\n");
+                        LibIO.pause();
                         break;
                     
                     case 4:
+                        // bin2hex
                         bin = LibIO.leerBinario("Introduzca en binario: ");
                         sres = Convert.bin2hex(bin);
                         System.out.println("En hexadecimal seria: " + sres);
-                        LibIO.waitReturn("Presione Enter para continuar");
-                        System.out.println("\n\n");
+                        LibIO.pause();
                         break;
                     
                     case 5:
-                        //TODO -- hex2bin call
+                        // hex2bin
+                        String hex = LibIO.leerHex("Introduzca en hexadecimal: ");
+                        sres = Convert.hex2bin(hex);
+                        System.out.println("En binario seria: " + sres);
+                        LibIO.pause();
                         break;
                     
                     case 6:
-                        //TODO -- hex2dec call
+                        // hex2dec
+                        hex = LibIO.leerHex("Introduzca en hexadecimal: ");
+                        res = Convert.hex2dec(hex);
+                        System.out.println("En decimal seria: " + res);
+                        LibIO.pause();
                         break;
 
                     default: break;

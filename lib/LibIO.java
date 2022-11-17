@@ -1,6 +1,5 @@
 package lib;
 import java.util.Scanner;
-
 public class LibIO {
     private static Scanner scanner = new Scanner(System.in);
 
@@ -69,7 +68,7 @@ public class LibIO {
             System.out.print(mensaje);
             String snum = scanner.nextLine();
             int n = Integer.MIN_VALUE;
-            
+
             try {
                 n = Integer.parseInt(snum);
                 valido = true;
@@ -156,11 +155,11 @@ public class LibIO {
      */
     public static String leerBinario(String mensaje){
         boolean valido = true;
-        String res = "";
+        String bin;
 
         do {
             System.out.print(mensaje);
-            String bin = scanner.nextLine();
+            bin = scanner.nextLine();
             valido = true;
 
             if(bin.isBlank()){
@@ -168,6 +167,8 @@ public class LibIO {
                 valido = false;
                 continue;
             }
+
+            bin = bin.trim();
 
             for(int i=0; i<bin.length(); i++){
                 char idx = bin.charAt(i);
@@ -178,17 +179,54 @@ public class LibIO {
                     valido = false;
                     break;
                 }
-
-            if(valido) res = bin;
         }
             
         } while (!valido);
 
-        return res;
+        return bin;
     }
 
     /**
-     * Wait until user interruption (Enter key)
+     * Checks wether a Hexadecimal is valid or not. It also 
+     * returns it in uppercase and without spaces
+     * @param mensaje
+     * @return
+     */
+    public static String leerHex(String mensaje){
+        String hexValues = "ABCDEF";
+        boolean valido;
+        String hex;
+
+        do {
+            System.out.print(mensaje);
+            hex = scanner.nextLine();
+            valido = true;
+
+            if(hex.isBlank()){
+                System.out.println("Hexadecimal no valido");
+                valido = false;
+                continue;
+            }
+
+            hex = hex.trim().replaceAll("\\s+", "").toUpperCase();
+
+            for(int i=0; i<hex.length(); i++){
+                char c = hex.charAt(i);
+                if(c < '0' || c > '9' && hexValues.indexOf(c) == -1){
+                    System.out.println("Hexadecimal no valido");
+                    valido = false;
+                    break;
+                }
+            }
+            
+        } while (!valido);
+
+        return hex;
+    }
+
+
+    /**
+     * Waits until user interruption (Enter key)
      */
     public static void pause() {
         System.out.println("\nPresione enter para continuar...\n");
