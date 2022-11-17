@@ -35,6 +35,11 @@ public class LibIO {
         return resultado;
     }
 
+    /**
+     * Reads a String with a personalized request message
+     * @param mensaje Message to be printed
+     * @return String with the input
+     */
     public static String leerString(String mensaje){
         System.out.print(mensaje);
         return scanner.nextLine();
@@ -58,27 +63,19 @@ public class LibIO {
      * @param max Integer with max value to accept
      * @return an integer with the validated input 
      */
-    public static int leerInt(String mensaje, int min, int max){
+    public static int leerOpcion(String mensaje, int min, int max){
         boolean valido = true;
         do{
             System.out.print(mensaje);
             String snum = scanner.nextLine();
             int n = 0;
-
-            for(int i=0; i<snum.length(); i++){
-                try {
-                    n = Integer.parseInt(snum);
-                } catch (NumberFormatException e) {
-                    System.out.println("Entrada no valida");
-                    valido = false;
-                    break;
-                }
+            try {
+                n = Integer.parseInt(snum);
                 valido = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no valida");
+                valido = false;
             }
-
-            if (!valido)
-                continue;
-                
 
             if (inRange(n, min, max)){
                 valido = true;
@@ -104,6 +101,31 @@ public class LibIO {
      * </pre></blockquote>
      * @param mensaje String with personalized input
      * @return an integer with the user input
+     */
+    public static double leerNum(String mensaje){
+        double n = 0;
+        boolean valido = true;
+        do{
+            System.out.print(mensaje);
+            String snum = scanner.nextLine();
+
+            try {
+                n = Double.parseDouble(snum);
+                valido = true;
+            } catch (NumberFormatException e) {
+                System.out.println("Entrada no valida");
+                valido = false;
+            }
+                
+        } while (!valido);
+
+        return n;
+    }
+
+    /**
+     * Request the user an integer and checks wether it's an integer or not
+     * @param mensaje String with the message to be prompted 
+     * @return Integer with the chosen value
      */
     public static int leerInt(String mensaje){
         int n = 0;
@@ -158,9 +180,17 @@ public class LibIO {
 
     /**
      * Wait until user interruption (Enter key)
-     * @param mensaje String with personalized message
      */
-    public static void waitReturn(String mensaje) {
+    public static void pause() {
+        System.out.println("\nPresione enter para continuar...\n");
+        scanner.nextLine();
+    }
+
+    /**
+     * Waits until user interruption (Enter key) with a personalized message
+     * @param mensaje String with the personalized message
+     */
+    public static void pause(String mensaje){
         System.out.println(mensaje);
         scanner.nextLine();
     }
@@ -198,9 +228,9 @@ public class LibIO {
      */
     public static void deployMenu(String title, String footer, String init, String... args){
         int idx = 1;
-        String titleMod = "*".repeat(title.length() + 6) 
+        String titleMod = new StringBuilder("*".repeat(title.length() + 6) 
                 + "\n** " + title + " **\n"
-                + "*".repeat(title.length() + 6);
+                + "*".repeat(title.length() + 6)).toString();
         
         System.out.println(titleMod);
 
@@ -219,7 +249,7 @@ public class LibIO {
             }
         }
 
-        if(footer.equals(" "));
+        if(footer.equals(" ") || footer.equals(""));
         else{
             System.out.println("-".repeat(title.length() + 6));
             System.out.println(footer);
