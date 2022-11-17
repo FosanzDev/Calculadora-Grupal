@@ -53,7 +53,7 @@ public class LibIO {
      * 
      * <blockquote><pre>
      * 
-     * int validNumber = leerInt("Enter integer between 0 and 10: ", 0, 10);
+     * int validNumber = leerOpcion("Enter integer between 0 and 10: ", 0, 10);
      * 
      * </pre></blockquote>
      * 
@@ -68,17 +68,19 @@ public class LibIO {
         do{
             System.out.print(mensaje);
             String snum = scanner.nextLine();
-            int n = 0;
+            int n = Integer.MIN_VALUE;
+            
             try {
                 n = Integer.parseInt(snum);
                 valido = true;
+
             } catch (NumberFormatException e) {
                 System.out.println("Entrada no valida");
                 valido = false;
+                continue;
             }
 
             if (inRange(n, min, max)){
-                valido = true;
                 return n;
             }
 
@@ -92,15 +94,15 @@ public class LibIO {
     }
 
     /**
-     * Requests the user an integer with personalized message
+     * Requests the user a number with personalized message
      * <p>
      * Examples:
      * <blockquote><pre>
-     * int number = leerInt("Introduzca un numero: ");
-     * //number = user input as an integer
+     * int number = leerNum("Introduzca un numero: ");
+     * //number = user input as a double
      * </pre></blockquote>
      * @param mensaje String with personalized input
-     * @return an integer with the user input
+     * @return an double with the user input
      */
     public static double leerNum(String mensaje){
         double n = 0;
@@ -161,6 +163,12 @@ public class LibIO {
             String bin = scanner.nextLine();
             valido = true;
 
+            if(bin.isBlank()){
+                System.out.println("Binario no valido");
+                valido = false;
+                continue;
+            }
+
             for(int i=0; i<bin.length(); i++){
                 char idx = bin.charAt(i);
                 if(idx == '0' || idx == '1');
@@ -170,6 +178,7 @@ public class LibIO {
                     valido = false;
                     break;
                 }
+
             if(valido) res = bin;
         }
             
