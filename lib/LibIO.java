@@ -134,6 +134,7 @@ public class LibIO {
         do{
             System.out.print(mensaje);
             String snum = scanner.nextLine();
+            snum = snum.trim().replaceAll("\\s+", "");
 
             try {
                 n = Integer.parseInt(snum);
